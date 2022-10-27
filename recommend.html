@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Item Recommender System</title>
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<style>
+    .navbar-nav li a, .text-white{
+        color:white;
+    }
+    .text-red {
+        color:red;
+    }
+    table {
+        border-collapse: separate;
+        border-spacing: 0 1em;
+        width: 100%;
+    }
+    th, td {
+      text-align: left;
+      padding: 8px;
+    }
+</style>
+<body style="background-color:white">
+
+    <nav class="navbar" style="background-color:#0088a6">
+        <a class="navbar-brand text-white">Amazon Product recommender</a>
+        <ul class="nav navbar-nav">
+            <li><a href="/">Recommender</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h1 class="text-red" style="font-size:50px">Amazon Product Recommender</h1>
+                <form action="/recommend_items" method="post">
+                    <input name="user_input" placeholder="Please enter correct Product Id" required type="text" class="form-control"><br>
+                    <button type="submit" class="btn btn-lg btn-warning">Submit</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            {% if data %}
+            <table>
+             <tr>
+                <td class="text-red" colspan="3" align="center"><u><h3><strong>Recommended Products<strong></h3></u></th>
+             </tr>
+             {% for i in data %}
+             <tr>
+                  <th class="text-red">{{i[0]}}</th>
+                  <th class="text-red">Ratings: {{i[1]}}</th>
+                  <th class="text-red">Link: <a href={{i[2]}} target="_blank"> {{i[2]}}</a></th>
+             </tr>
+             {% endfor %}
+             </table>
+            {% endif %}
+        </div>
+    </div>
+
+</body>
+</html>
